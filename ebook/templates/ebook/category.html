@@ -1,0 +1,6 @@
+<h1>Displaying book of category: {{ category.name }}</h1>
+<ol>
+	{% for ebook in ebooks %}
+	<li>{{ ebook.title }} </li>
+	{% endfor %}
+</ol>
