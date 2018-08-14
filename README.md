@@ -9,6 +9,7 @@ This is a test application developed to learn django framework.
 python manage.py createsuperuser
 ```
 enter your username, email and password
+
 2. run server using the command:
 ```
 python manage.py runserver
