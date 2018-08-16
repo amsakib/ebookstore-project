@@ -1,5 +1,19 @@
-<ul>
-	{% for ebook in ebooks %}
-		<li>{{ ebook.title }}</li>
-	{% endfor %}
-</ul>
+{% extends 'ebook/base.html' %}
+
+{% block main %}
+<h2 class="text-center">All E-books</h2>
+<div class="row">
+            {% for ebook in ebooks %}
+            <div class="col-md-2 pt-3">
+                <a href="{% url 'ebook' ebook.id %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ ebook.image.url }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ ebook.title }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock main %}

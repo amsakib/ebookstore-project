@@ -1,5 +1,18 @@
-<img src="/media/{{ ebook.image }}" height="120" width="100" />
-<p>Title: {{ ebook.title }}</p>
-<p>Authors: {{ ebook.authors }}</p>
-<p>ISBN: {{ ebook.isbn }}</p>
-<p><a href="/media/{{ ebook.ebook }}">Download NOW</a></p>
+{% extends 'ebook/base.html' %}
+
+{% block main %}
+<div class="row pt-3">
+    <div class="col-md-3">
+        <img src="{{ ebook.image.url }}" class="img-responsive"/>
+    </div>
+
+    <div class="col-md-9">
+        <p><strong>Title:</strong> {{ ebook.title }}</p>
+        <p><strong>Authors:</strong> {{ ebook.authors }}</p>
+        <p><strong>ISBN:</strong> {{ ebook.isbn }}</p>
+        <p><strong>Pages:</strong> {{ ebook.pages }}</p>
+        <p><strong>Price: </strong> USD {{ ebook.price }}</p>
+        <p><a class="btn btn-success" href="{{ ebook.ebook.url }}">Download NOW</a></p>
+    </div>
+</div>
+{% endblock main %}

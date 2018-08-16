@@ -1,5 +1,13 @@
-<ul>
-	{% for category in categories %}
-		<li>{{ category.name }}</li>
-	{% endfor %}
-</ul>
+{% extends 'ebook/base.html' %}
+
+{% block main %}
+<h2>Categories</h2>
+<div class="row">
+    <ul>
+        {% for category in categories %}
+        <li><a href="{% url 'category' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock main %}
+

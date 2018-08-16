@@ -1,6 +1,19 @@
-<h1>Displaying book of category: {{ category.name }}</h1>
-<ol>
-	{% for ebook in ebooks %}
-	<li>{{ ebook.title }} </li>
-	{% endfor %}
-</ol>
+{% extends 'ebook/base.html' %}
+
+{% block main %}
+<h2 class="text-center">{{ category.name }}</h2>
+<div class="row">
+            {% for ebook in ebooks %}
+            <div class="col-md-2 pt-3">
+                <a href="{% url 'ebook' ebook.id %}">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ ebook.image.url }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ ebook.title }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock main %}
