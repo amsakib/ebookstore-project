@@ -3,17 +3,37 @@
 {% block main %}
 <h2 class="text-center">{{ category.name }}</h2>
 <div class="row">
-            {% for ebook in ebooks %}
-            <div class="col-md-2 pt-3">
-                <a href="{% url 'ebook' ebook.id %}">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ ebook.image.url }}">
-                        <div class="card-body">
-                            <p class="card-text">{{ ebook.title }}</p>
-                        </div>
-                    </div>
-                </a>
+    {% for ebook in ebooks %}
+    <div class="col-md-2 pt-3">
+        <a href="{% url 'ebook' ebook.id %}">
+            <div class="card">
+                <img class="card-img-top" src="{{ ebook.image.url }}">
+                <div class="card-body">
+                    <p class="card-text">{{ ebook.title }}</p>
+                </div>
             </div>
-            {% endfor %}
-        </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row text-center">
+    <div class="pagination">
+        <span class="step-links">
+            {% if ebooks.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ ebooks.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ ebooks.number }} of {{ ebooks.paginator.num_pages }}.
+            </span>
+
+            {% if ebooks.has_next %}
+                <a href="?page={{ ebooks.next_page_number }}">next</a>
+                <a href="?page={{ ebooks.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
 {% endblock main %}
