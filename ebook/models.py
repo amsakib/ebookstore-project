@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # category model
 class Category(models.Model):
@@ -24,3 +25,14 @@ class Ebook(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    body = models.TextField()
+    pub_time = models.DateTimeField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ebook = models.ForeignKey(Ebook, on_delete=models.CASCADE)
+
+
+    def pub_date_pretty(self):
+        return self.pub_time.strftime('%b %e %Y')

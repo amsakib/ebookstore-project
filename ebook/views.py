@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Category, Ebook
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Category, Ebook, Comment
 from django.core.paginator import Paginator
+from django.contrib import auth
+from django.utils import timezone
 
 def home(request):
     ebooks = Ebook.objects.order_by('-id')[:8]
@@ -44,6 +46,25 @@ def ebooks(request):
 
 def ebook(request, ebook_id):
     ebook = get_object_or_404(Ebook, pk = ebook_id)
+    comments = ebook.comment_set.all()
     return render(request, 'ebook/ebook.html', {
-		'ebook' : ebook
+		'ebook' : ebook,
+        'comments' : comments,
 		})
+
+def comment(request, ebook_id):
+    if request.method == 'POST':
+        user = auth.get_user(request)
+        ebook = get_object_or_404(Ebook, pk = ebook_id)
+
+        # create the comment
+        comment = Comment()
+        comment.body = request.POST['body']
+        comment.pub_time = timezone.datetime.now()
+        comment.ebook = ebook
+        comment.user = user
+        comment.save()
+
+        return redirect('ebook', ebook_id)
+    else:
+        return redirect('home')
