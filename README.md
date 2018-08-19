@@ -3,15 +3,24 @@
 
 This is a test application developed to learn django framework.
 
+1. First step is to create migration files using the following command:
+```buildoutcfg
+python manage.py makemigrations
+```
 
-1. Create super user first using the command:
+2. Then migrate using the following command:
+```buildoutcfg
+python manage.py migrate
+```
+
+3. Create super user using the command:
 ```
 python manage.py createsuperuser
 ```
 enter your username, email and password
 
-2. run server using the command:
+4. run server using the command:
 ```
 python manage.py runserver
 ```
-3. visit admin panel at 127.0.0.1:8000/admin to entry category and ebooks
+5. visit admin panel at `127.0.0.1:8000/admin` to enter category and ebooks in the database
