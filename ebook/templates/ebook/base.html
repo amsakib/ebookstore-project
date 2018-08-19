@@ -22,6 +22,14 @@
     </header>
     <main role="main">
         <div class="container">
+
+            {% if success %}
+                <div class="row pt-3">
+                    <div class="alert alert-success col-12">
+                        {{ success }}
+                    </div>
+                </div>
+            {% endif %}
             {% block main %}
             {% endblock main %}
         </div>

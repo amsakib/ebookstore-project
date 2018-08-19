@@ -1,11 +1,23 @@
 {% extends 'ebook/base.html' %}
 
 {% block main %}
+
+
+{% if error %}
+<div class="row pt-3">
+    <div class="alert alert-danger col-12">
+        {{ error }}
+    </div>
+</div>
+{% endif %}
+
+
 <div class="row">
     <span class="col-2"></span>
     <h1>Login</h1>
 </div>
 <form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
     <div class="form-group row">
         <label for="username" class="col-2 text-right">Username:</label>
         <input type="text" id="username" name="username" placeholder="username" class="form-control col-4" required>
